@@ -121,7 +121,7 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
     event.preventDefault();
     const itemId = event.currentTarget.closest(".item").dataset.itemId;
     const item = this.actor.items.get(itemId);
-    return item.update({ "data.quantity.value": parseInt(event.target.value) });
+    return item.update({ "quantity.value": parseInt(event.target.value) });
   }
 
   _onShowModifiers(event) {
@@ -211,19 +211,19 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
     });
 
     html.find(".item-push").click((ev) => {
-      event.preventDefault();
-      const header = event.currentTarget;
+      ev.preventDefault();
+      const header = ev.currentTarget;
       const table = header.dataset.array;
       this._pushLang(table);
     });
 
     html.find(".item-pop").click((ev) => {
-      event.preventDefault();
-      const header = event.currentTarget;
+      ev.preventDefault();
+      const header = ev.currentTarget;
       const table = header.dataset.array;
       this._popLang(
         table,
-        $(event.currentTarget).closest(".item").data("lang")
+        $(ev.currentTarget).closest(".item").data("lang")
       );
     });
 
@@ -249,7 +249,7 @@ export class AcksActorSheetCharacter extends AcksActorSheet {
       await item.update({
         _id: li.data("itemId"),
         data: {
-          equipped: !item.data.data.equipped,
+          equipped: !item.system.equipped,
         },
       });
     });
