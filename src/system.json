@@ -2,7 +2,7 @@
   "id": "acks",
   "title": "Adventurer Conqueror King System",
   "description": "Play B/X or other OSR compatible content using the ACKS system",
-  "version": "0.11.0.1a",
+  "version": "0.11.0.2-dev-1",
   "compatibility": {
     "minimum": "10",
     "verified": "11"
