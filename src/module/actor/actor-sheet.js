@@ -23,7 +23,7 @@ export class AcksActorSheet extends ActorSheet {
 
   activateEditor(target, editorOptions, initialContent) {
     // remove some controls to the editor as the space is lacking
-    if (target == "data.details.description") {
+    if (target == "details.description") {
       editorOptions.toolbar = "styleselect bullist hr table removeFormat save";
     }
     super.activateEditor(target, editorOptions, initialContent);
@@ -33,7 +33,7 @@ export class AcksActorSheet extends ActorSheet {
    * Organize and classify Owned Items for Character sheets
    * @private
    */
-  _prepareItems(data) {
+  _prepareItems(items) {
     // Partition items by category
     let [items, weapons, armors, abilities, spells] = data.items.reduce(
       (arr, item) => {
@@ -55,20 +55,20 @@ export class AcksActorSheet extends ActorSheet {
       let lvl = spells[i].data.lvl;
       if (!sortedSpells[lvl]) sortedSpells[lvl] = [];
       if (!slots[lvl]) slots[lvl] = 0;
-      slots[lvl] += spells[i].data.cast;
+      slots[lvl] += spells[i].cast;
       sortedSpells[lvl].push(spells[i]);
     }
-    data.slots = {
+    this.slots = {
       used: slots,
     };
     // Assign and return
-    data.owned = {
+    this.owned = {
       items: items,
       weapons: weapons,
       armors: armors,
     };
-    data.abilities = abilities;
-    data.spells = sortedSpells;
+    this.abilities = abilities;
+    this.spells = sortedSpells;
   }
 
   _onItemSummary(event) {
@@ -96,10 +96,10 @@ export class AcksActorSheet extends ActorSheet {
     const itemId = event.currentTarget.closest(".item").dataset.itemId;
     const item = this.actor.items.get(itemId);
     if (event.target.dataset.field == "cast") {
-      return item.update({ "data.cast": parseInt(event.target.value) });
+      return item.update({ "cast": parseInt(event.target.value) });
     } else if (event.target.dataset.field == "memorize") {
       return item.update({
-        "data.memorized": parseInt(event.target.value),
+        "memorized": parseInt(event.target.value),
       });
     }
   }
@@ -113,8 +113,8 @@ export class AcksActorSheet extends ActorSheet {
       const item = this.actor.items.get(itemId);
       item.update({
         _id: item.id,
-        "data.cast": 0,
-        "item.data.data.memorized": 0
+        "cast": 0,
+        "item.memorized": 0
       });
     });
   }
