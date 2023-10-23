@@ -180,6 +180,6 @@
   "gridDistance": 5,
   "gridUnits": "ft",
   "url": "https://github.com/lastredoubt/foundryacks",
-  "manifest": "https://raw.githubusercontent.com/lastredoubt/foundryacks/master/src/system.json",
+  "manifest": "https://raw.githubusercontent.com/ShockTohp/foundryacks/actor-refactor/src/system.json",
   "download": "https://raw.githubusercontent.com/lastredoubt/foundryacks/master/package/acks-v0.11.0.1a.zip"
 }
